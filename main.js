@@ -6,6 +6,10 @@ let lastHole;
 let timeUp = false;
 let score = 0;
 const gameTime = 13000;
+const moleTime = {
+  start: 500,
+  end: 1000,
+};
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
@@ -22,7 +26,7 @@ function randomHole(holes) {
 }
 
 function peep() {
-  const time = randomTime(200, 1000);
+  const time = randomTime(moleTime.start, moleTime.end);
   const hole = randomHole(holes);
   hole.classList.add("up");
   setTimeout(() => {
@@ -39,9 +43,16 @@ function startGame() {
     return (timeUp = true);
   }, gameTime);
 }
+let timeCler;
 function bunk(e) {
   if (!e.isTrusted) return;
+  if (timeCler) {
+    clearTimeout(timeCler);
+  }
   score++;
+  timeCler = setTimeout(() => {
+    SuttingStar(score);
+  }, gameTime - gameTime / 3);
   this.parentNode.classList.remove("up");
   scoreBoard.textContent = score;
 }
@@ -55,9 +66,11 @@ const throttle = (fun, dely) => {
     return fun(...arg);
   };
 };
-function test() {
-  return console.log("iam working");
+
+function SuttingStar(score) {
+  console.log("sutting star ");
 }
+
 onClick.addEventListener("click", throttle(startGame, gameTime + 100));
 
 moles.forEach((mole) => mole.addEventListener("click", bunk));

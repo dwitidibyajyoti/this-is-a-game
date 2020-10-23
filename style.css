@@ -42,6 +42,7 @@ h1 {
   flex: 1 0 33.33%;
   overflow: hidden;
   position: relative;
+  z-index: 5;
 }
 
 .hole:after {
@@ -52,7 +53,7 @@ h1 {
   width: 100%;
   height: 70px;
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   bottom: -30px;
 }
 
@@ -78,4 +79,62 @@ button {
   border: none;
   background-color: #b58120a1;
   outline: none;
+}
+
+.celebrate img {
+  width: 160px;
+  height: 160px;
+  margin: 20px;
+}
+
+.celebrate {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 17%;
+  width: 50%;
+  left: 33%;
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.star1 {
+  position: relative;
+  top: 67px;
+  left: -61px;
+  display: none;
+}
+.star3 {
+  position: relative;
+  top: 67px;
+  left: 14px;
+  display: none;
+}
+.star2 {
+  display: none;
+}
+
+.score1 .star1 {
+  display: block;
+  z-index: 65;
+}
+
+.score2 .star1 {
+  display: block;
+  z-index: 65;
+}
+.score2 .star2 {
+  display: block;
+  z-index: 65;
+}
+
+.score3 .star1 {
+  display: block;
+  z-index: 65;
+}
+.score3 .star2 {
+  display: block;
+  z-index: 65;
+}
+.score3 .star3 {
+  display: block;
+  z-index: 65;
 }
