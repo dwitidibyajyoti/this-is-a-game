@@ -94,7 +94,7 @@ button {
   top: 17%;
   width: 50%;
   left: 33%;
-  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .star1 {
   position: relative;

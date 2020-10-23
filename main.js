@@ -2,9 +2,12 @@ const holes = document.querySelectorAll(".hole");
 const scoreBoard = document.querySelector(".score");
 const moles = document.querySelectorAll(".mole");
 const onClick = document.querySelector(".onclick"); //this is test
+const celebrate = document.querySelector(".celebrate");
+
 let lastHole;
 let timeUp = false;
 let score = 0;
+
 const gameTime = 13000;
 const moleTime = {
   start: 500,
@@ -40,19 +43,26 @@ function startGame() {
   score = 0;
   peep();
   setTimeout(() => {
-    return (timeUp = true);
+    timeUp = true;
+    setTimeout(() => {
+      SuttingStar();
+    }, moleTime.end);
   }, gameTime);
 }
-let timeCler;
+
+let corratescore;
+
 function bunk(e) {
   if (!e.isTrusted) return;
-  if (timeCler) {
-    clearTimeout(timeCler);
-  }
+  // if (timeCler) {
+  //   clearTimeout(timeCler);
+  // }
   score++;
-  timeCler = setTimeout(() => {
-    SuttingStar(score);
-  }, gameTime - gameTime / 3);
+  corratescore = score;
+
+  //  timeCler = setTimeout(() => {
+  //    SuttingStar(score);
+  // }, gameTime - gameTime / 3);
   this.parentNode.classList.remove("up");
   scoreBoard.textContent = score;
 }
@@ -67,8 +77,34 @@ const throttle = (fun, dely) => {
   };
 };
 
-function SuttingStar(score) {
-  console.log("sutting star ");
+function SuttingStar() {
+  switch (true) {
+    case corratescore === 0:
+      console.log("tray again");
+      break;
+    case corratescore <= 5:
+      celebrate.classList.add("score1");
+      setTimeout(() => {
+        celebrate.classList.remove("score1");
+      }, moleTime.end);
+
+      break;
+    case corratescore > 5 && corratescore < 11:
+      celebrate.classList.add("score2");
+      setTimeout(() => {
+        celebrate.classList.remove("score2");
+      }, moleTime.end);
+
+      break;
+    case corratescore >= 12:
+      celebrate.classList.add("score3");
+      setTimeout(() => {
+        celebrate.classList.remove("score3");
+      }, moleTime.end);
+
+      break;
+    default:
+  }
 }
 
 onClick.addEventListener("click", throttle(startGame, gameTime + 100));
