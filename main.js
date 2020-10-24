@@ -20,7 +20,7 @@ function randomHole(holes) {
   indx = Math.floor(Math.random() * holes.length);
   const hole = holes[indx];
   if (hole === lastHole) {
-    console.log("!oo thats the same hole");
+    //console.log("!oo thats the same hole");
     return randomHole(holes);
   }
 
@@ -54,15 +54,10 @@ let corratescore;
 
 function bunk(e) {
   if (!e.isTrusted) return;
-  // if (timeCler) {
-  //   clearTimeout(timeCler);
-  // }
+
   score++;
   corratescore = score;
 
-  //  timeCler = setTimeout(() => {
-  //    SuttingStar(score);
-  // }, gameTime - gameTime / 3);
   this.parentNode.classList.remove("up");
   scoreBoard.textContent = score;
 }
